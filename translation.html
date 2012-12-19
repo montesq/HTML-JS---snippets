@@ -14,7 +14,7 @@
 <a href="#myModal" role="button" class="btn" data-toggle="modal">Translate</a>
 
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <form class="translation-form form-horizontal" method="POST" >
+  <form id="translation-form" class="form-horizontal" method="POST" action="mailto:julien.montenoise@bureauveritas.com">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 		<h3 id="myModalLabel">Translation Box</h3>
@@ -45,7 +45,7 @@ $('#myModal').bind('show', function() {
 });
 
 $('button.submit').click(function () {
-  $('translation-form').submit();
+  $('form#translation-form').submit();
 });
 
 function generateTranslationForm() {
