@@ -11,10 +11,10 @@
 	<span class="i18n-translation" key="test.pcm.key7">test7</span><br/>
 	<span class="i18n-translation" key="test.pcm.key8">test8</span><br/>
 </p>
-<a href="#myModal" onClick="generateTranslationForm()" role="button" class="btn" data-toggle="modal">Translate</a>
+<a href="#myModal" role="button" class="btn" data-toggle="modal">Translate</a>
 
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <form class="form-horizontal" method="POST" >
+  <form class="translation-form form-horizontal" method="POST" >
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 		<h3 id="myModalLabel">Translation Box</h3>
@@ -26,8 +26,8 @@
 	</div>
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-		<button class="btn" data-dismiss="modal" aria-hidden="true" onClick="applyTranslationChangesInThePage()">Test Only</button>
-		<button class="btn btn-primary">Submit</button>
+		<button class="btn apply" data-dismiss="modal" aria-hidden="true">Test Only</button>
+		<button class="btn btn-primary submit" data-dismiss="modal" aria-hidden="true">Submit</button>
 	</div>
 	</form>
 </div>
@@ -36,12 +36,24 @@
 <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
 <script>
 
+$('button.apply').click(function () {
+  applyTranslationChangesInThePage();
+});
+
+$('#myModal').bind('show', function() {
+  generateTranslationForm();
+});
+
+$('button.submit').click(function () {
+  $('translation-form').submit();
+});
+
 function generateTranslationForm() {
   $('.translation-fields').empty();
   var translations = $('.i18n-translation');
 	$.each(translations, function () {
-	   var key = this.getAttribute('key');
-		 var currentValue = this.textContent;
+	   var key = $(this).attr('key');
+		 var currentValue = $(this).text();
 	   $('.translation-fields').append('<label class="control-label">' + key 
 		                                 + '</label><div class="controls"><textarea class="translated-value" name="' + key + '">' 
 																		 + currentValue + '</textarea></div>');
@@ -51,8 +63,8 @@ function generateTranslationForm() {
 function applyTranslationChangesInThePage() {
   var translatedValues = $('.translated-value');
 	$.each(translatedValues, function () {
-	  var key = this.getAttribute('name');
-		var suggestedTranslation = this.value;
+	  var key = $(this).attr('name');
+		var suggestedTranslation = $(this).val();
 		$('[key="' + key + '"]').text(suggestedTranslation);
 	});
 };
