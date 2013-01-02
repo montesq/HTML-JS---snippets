@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
+  <script src="http://code.angularjs.org/1.0.3/i18n/angular-locale_fr.js"></script>
+
+</head>
+<body>
+This snippet shows how angular can be used to display a date in the locale format and how the time is displayed according to the user timezone
+<div ng-app="">
+<span ng-non-bindable>{{'2012-12-24T12:34Z' | date:'short'}}</span>:
+   {{'2012-12-24T12:34Z' | date:'short'}}<br>
+<span ng-non-bindable>{{'2012-07-01T12:34Z' | date:'short'}}</span>:
+   {{'2012-07-01T12:34Z' | date:'short'}}<br>
+</div>
+</body>
+</html>
