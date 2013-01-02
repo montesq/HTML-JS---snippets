@@ -1,0 +1,27 @@
+    <!doctype html>
+    <html ng-app="project">
+    <head>
+  		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+			</head>
+    <body>
+		This snippet shows how to hide a column from a table with jquery
+		  <table>
+			  <tr>
+				  <th class="col1">test col1</th>
+				  <th class="col2">test col2</th>
+				  <th class="col3">test col3</th>
+				  <th class="col4">test col4</th>
+				</tr>
+			  <tr>
+				  <td class="col1">test col1</td>
+				  <td class="col2">test col2</td>
+				  <td class="col3">test col3</td>
+				  <td class="col4">test col4</td>
+				</tr>
+			</table>
+			<script>
+			  $('.col2').hide("slow")
+				var test = $('.col2').attr('class');
+			</script>
+    </body>
+    </html>
